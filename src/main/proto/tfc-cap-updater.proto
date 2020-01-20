@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package tfc.cap.updater;
+
+service CapUpdaterService {
+  rpc DownscaleCap(CapDownscale) returns (DownscaleResponse) {}
+}
+
+message CapDownscale {
+  string accountID = 1;
+  int32 value = 2;
+  int32 money = 3;
+}
+
+// Created a blank get request
+message GetRequest {}
+
+message DownscaleResponse {
+  bool accepted = 1;
+  CapDownscale downscale = 2;
+  repeated CapDownscale downscales = 3;
+}
