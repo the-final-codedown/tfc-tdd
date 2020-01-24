@@ -1,4 +1,4 @@
-package fr.unice.polytech.si5.al.tfc.tdd;
+package fr.unice.polytech.si5.al.tfc.tdd.micro;
 
 import fr.unice.polytech.si5.al.tfc.tdd.path.GlobalServicePath;
 import fr.unice.polytech.si5.al.tfc.tdd.path.ProfileServicePath;
@@ -16,7 +16,7 @@ import java.net.URI;
 
 import static org.junit.Assert.assertEquals;
 
-public class BasicTest {
+public class ProfileTest {
 
     @Test
     public void test() throws UnsupportedEncodingException, ParseException {
