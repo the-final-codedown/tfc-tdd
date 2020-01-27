@@ -7,7 +7,6 @@ import tfc.transfer.validator.TfcTransferValidator;
 import tfc.transfer.validator.TransferValidatorServiceGrpc;
 
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TransferValidatorClient {
@@ -43,20 +42,17 @@ public class TransferValidatorClient {
     /**
      * Say hello to server.
      */
-    public void pay(String accountIDOrigin, String accountIDDestination, int value) {
+    public TfcTransferValidator.TransferValidation pay(String accountIDOrigin, String accountIDDestination, int value) {
         TfcTransferValidator.Transfer transfer = TfcTransferValidator.Transfer.newBuilder()
                 .setOrigin(accountIDOrigin)
                 .setDestination(accountIDDestination)
                 .setAmount(value)
                 .build();
-        TfcTransferValidator.TransferValidation response;
         try {
-            response = blockingStub.pay(transfer);
+            return blockingStub.pay(transfer);
         } catch (StatusRuntimeException e) {
-            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-            return;
+            return null;
         }
-        logger.info("Pay: " + response.toString());
     }
 
 }

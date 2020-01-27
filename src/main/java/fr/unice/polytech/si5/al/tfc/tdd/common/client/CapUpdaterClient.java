@@ -7,7 +7,6 @@ import tfc.cap.updater.CapUpdaterServiceGrpc;
 import tfc.cap.updater.TfcCapUpdater;
 
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CapUpdaterClient {
@@ -42,19 +41,15 @@ public class CapUpdaterClient {
     /**
      * Say hello to server.
      */
-    public void downscaleCap(String accountID, int value) {
-        //logger.info("Will try to greet " + name + " ...");
+    public TfcCapUpdater.DownscaleResponse downscaleCap(String accountID, int value) {
         TfcCapUpdater.CapDownscale downscale = TfcCapUpdater.CapDownscale.newBuilder()
                 .setAccountID(accountID)
                 .setValue(value)
                 .build();
-        TfcCapUpdater.DownscaleResponse response;
         try {
-            response = blockingStub.downscaleCap(downscale);
+            return blockingStub.downscaleCap(downscale);
         } catch (StatusRuntimeException e) {
-            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-            return;
+            return null;
         }
-        logger.info("Downscale cap: " + response.toString());
     }
 }

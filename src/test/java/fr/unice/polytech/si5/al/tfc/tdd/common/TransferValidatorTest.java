@@ -6,9 +6,11 @@ import org.junit.Test;
 public class TransferValidatorTest {
 
     @Test
-    public void payTest() {
+    public void payTest() throws InterruptedException {
         TransferValidatorClient client = new TransferValidatorClient("localhost", 50052);
-        client.pay("bank", "bank", 10);
+        System.out.println(client.pay("bank", "bank", 10));
+        Thread.sleep(5000);
+        System.out.println(client.pay("unkown", "unknown", 10));
     }
 
 }
