@@ -1,4 +1,6 @@
 #!/bin/bash
 
-cp ../tfc-transfer-validator/proto/tfc-transfer-validator.proto src/main/proto/
-cp ../tfc-cap-updater/src/proto/tfc-cap-updater.proto src/main/proto/
+PROTO_DEST=src/main/proto/
+rm $PROTO_DEST*
+cp ../tfc-transfer-validator/src/proto/tfc-transfer-validator.proto $PROTO_DEST
+cp ../tfc-cap-updater/src/proto/tfc-cap-updater.proto $PROTO_DEST
