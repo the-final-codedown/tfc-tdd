@@ -1,16 +1,28 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common;
 
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.TransferValidatorClient;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TransferValidatorTest {
 
-    @Test
-    public void payTest() throws InterruptedException {
-        TransferValidatorClient client = new TransferValidatorClient("localhost", 50052);
-        System.out.println(client.pay("bank", "bank", 10));
-        Thread.sleep(5000);
-        System.out.println(client.pay("unkown", "unknown", 10));
+    private static TransferValidatorClient client;
+
+    @BeforeClass
+    public static void init() {
+        client = new TransferValidatorClient("localhost", 50052);
     }
 
+    @AfterClass
+    public static void shutdown() throws InterruptedException {
+        client.shutdown();
+    }
+
+    @Test
+    public void payTest() throws InterruptedException {
+        System.out.println(client.pay("bank", "bank", 10));
+        Thread.sleep(5000);
+        System.out.println(client.pay("unknown", "unknown", 10));
+    }
 }
