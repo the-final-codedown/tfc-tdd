@@ -4,6 +4,10 @@ import fr.unice.polytech.si5.al.tfc.tdd.common.client.TransferValidatorClient;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import tfc.transfer.validator.TfcTransferValidator;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TransferValidatorTest {
 
@@ -20,9 +24,12 @@ public class TransferValidatorTest {
     }
 
     @Test
-    public void payTest() throws InterruptedException {
-        System.out.println(client.pay("bank", "bank", 10));
-        Thread.sleep(5000);
-        System.out.println(client.pay("unknown", "unknown", 10));
+    public void payTest() {
+        TfcTransferValidator.TransferValidation validation = client.pay("bank", "bank", 10);
+        assertTrue(validation.getValidated());
+
+        // This account doesn't exist
+        validation = client.pay("unknown", "unknown", 10);
+        assertFalse(validation.getValidated());
     }
 }
