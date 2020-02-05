@@ -2,12 +2,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
     <groupId>fr.unice.polytech.si5.al.tfc</groupId>
     <artifactId>tfc-tdd</artifactId>
     <version>0.0.1</version>
@@ -16,16 +10,17 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
         <httpclient.version>4.5.9</httpclient.version>
         <jsonrpc.version>1.5.3</jsonrpc.version>
         <junit.version>4.12</junit.version>
         <json.version>20160810</json.version>
         <json-simple.version>1.1.1</json-simple.version>
-        <spring-web.version>5.2.0.RELEASE</spring-web.version>
+        <spring-web.version>5.2.3.RELEASE</spring-web.version>
         <slf4j-api.version>1.7.5</slf4j-api.version>
         <slf4j-simple.version>1.6.4</slf4j-simple.version>
-        <lombok.version>1.18.10</lombok.version>
         <kafka.version>2.3.0</kafka.version>
 
         <!-- protobuf paths -->
@@ -39,7 +34,8 @@
         <maven-shade-plugin.version>2.4.2</maven-shade-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <os-maven-plugin.version>1.4.1.Final</os-maven-plugin.version>
-        <protobuf.version>3.11.1</protobuf.version>
+        <protobuf.version>3.11.3</protobuf.version>
+        <io.grpc.version>1.27.0</io.grpc.version>
     </properties>
 
     <dependencies>
@@ -65,17 +61,6 @@
             <version>${json-simple.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring-web.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>${kafka.version}</version>
@@ -84,23 +69,23 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-testing</artifactId>
-            <version>1.26.0</version>
+            <version>${io.grpc.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
-            <version>1.26.0</version>
+            <version>${io.grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
-            <version>1.26.0</version>
+            <version>${io.grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
-            <version>1.26.0</version>
+            <version>${io.grpc.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
         <dependency>

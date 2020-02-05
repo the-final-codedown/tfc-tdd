@@ -3,25 +3,23 @@ package fr.unice.polytech.si5.al.tfc.tdd.micro;
 import fr.unice.polytech.si5.al.tfc.tdd.path.GlobalServicePath;
 import fr.unice.polytech.si5.al.tfc.tdd.path.ProfileServicePath;
 import fr.unice.polytech.si5.al.tfc.tdd.utils.RequestUtils;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertEquals;
 
 public class ProfileTest {
 
     @Test
-    public void test() throws UnsupportedEncodingException, ParseException {
-        URI uri = UriComponentsBuilder.fromUriString(GlobalServicePath.PROFILE_SERVICE + ProfileServicePath.PROFILE)
-                .build().toUri();
+    public void test() throws UnsupportedEncodingException, ParseException, URISyntaxException {
+        URI uri = new URI(GlobalServicePath.PROFILE_SERVICE + ProfileServicePath.PROFILE);
         HttpPost httpPost = new HttpPost(uri);
         String json = "{\"email\": \"florian.salord@etu.unice.fr\"}";
         RequestUtils.generateBody(httpPost, json);

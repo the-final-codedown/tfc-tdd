@@ -36,6 +36,5 @@ public class CapUpdaterTest {
     public void unknownTest() {
         TfcCapUpdater.DownscaleResponse response = client.downscaleCap("unknown", 100);
         assertTrue(response.getAccepted());
-
     }
 }
