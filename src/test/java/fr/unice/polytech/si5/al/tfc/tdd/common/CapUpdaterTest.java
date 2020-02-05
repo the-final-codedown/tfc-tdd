@@ -23,25 +23,18 @@ public class CapUpdaterTest {
     }
 
     @Test
-    public void bankTest() throws InterruptedException {
-        try {
-            TfcCapUpdater.DownscaleResponse response = client.downscaleCap("bank", 100);
-            assertTrue(response.getAccepted());
-            System.out.println(response.getDownscale());
-        } finally {
-            client.shutdown();
-        }
+    public void bankTest() {
+        TfcCapUpdater.DownscaleResponse response = client.downscaleCap("bank", 100);
+        assertTrue(response.getAccepted());
     }
 
+    /**
+     * This test is supposed to pass as it does not check
+     * if the downscale is supposed to happen or not but just to do it
+     */
     @Test
-    public void unknownTest() throws InterruptedException {
-        CapUpdaterClient client = new CapUpdaterClient("localhost", 50051);
-        try {
-            TfcCapUpdater.DownscaleResponse response = client.downscaleCap("unknown", 100);
-            assertTrue(response.getAccepted());
-            System.out.println(response);
-        } finally {
-            client.shutdown();
-        }
+    public void unknownTest() {
+        TfcCapUpdater.DownscaleResponse response = client.downscaleCap("unknown", 100);
+        assertTrue(response.getAccepted());
     }
 }
