@@ -109,7 +109,7 @@ public class RequestUtils {
             if ("hybrid".equals(architecture)) {
                 return new URI(GlobalServicePath.class.getField("HYBRID_" + service.toString() + "_PATH").get(null) + path);
             } else if ("micro".equals(architecture)) {
-                return new URI(GlobalServicePath.class.getField("HYBRID_" + service.toString() + "_PATH").get(null) + path);
+                return new URI(GlobalServicePath.class.getField("MICRO_" + service.toString() + "_PATH").get(null) + path);
             }
         } catch (URISyntaxException | NoSuchFieldException | IllegalAccessException e) {
             System.out.println(e.getMessage());
