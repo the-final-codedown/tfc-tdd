@@ -1,6 +1,6 @@
 package fr.unice.polytech.si5.al.tfc.tdd;
 
-import fr.unice.polytech.si5.al.tfc.tdd.path.GlobalServicePath;
+import com.google.gson.JsonObject;
 import fr.unice.polytech.si5.al.tfc.tdd.path.ProfileServicePath;
 import fr.unice.polytech.si5.al.tfc.tdd.utils.RequestUtils;
 import fr.unice.polytech.si5.al.tfc.tdd.utils.SERVICE;
@@ -23,8 +23,10 @@ public class ProfileTest {
         URI uri = RequestUtils.getURI(SERVICE.PROFILE, ProfileServicePath.PROFILE);
         System.out.println(uri);
         HttpPost httpPost = new HttpPost(uri);
-        String json = "florian.salord@etu.unice.fr";
-        RequestUtils.generateBody(httpPost, json);
+        String email = "florian.salord@etu.unice.fr";
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("email", email);
+        RequestUtils.generateBody(httpPost, jsonObject.toString());
         String profile = RequestUtils.executeRequest(httpPost, 200, false);
 
         JSONParser parser = new JSONParser();
