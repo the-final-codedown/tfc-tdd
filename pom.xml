@@ -113,9 +113,11 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <includes>
-                                <include>**/common/**</include>
-                                <include>**/hybrid/**</include>
+                                <include>**</include>
                             </includes>
+                            <systemPropertyVariables>
+                                <architecture>hybrid</architecture>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -131,9 +133,11 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <includes>
-                                <include>**/common/**</include>
-                                <include>**/micro/**</include>
+                                <include>**</include>
                             </includes>
+                            <systemPropertyVariables>
+                                <architecture>micro</architecture>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>

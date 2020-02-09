@@ -1,8 +1,9 @@
-package fr.unice.polytech.si5.al.tfc.tdd.micro;
+package fr.unice.polytech.si5.al.tfc.tdd;
 
 import fr.unice.polytech.si5.al.tfc.tdd.path.GlobalServicePath;
 import fr.unice.polytech.si5.al.tfc.tdd.path.ProfileServicePath;
 import fr.unice.polytech.si5.al.tfc.tdd.utils.RequestUtils;
+import fr.unice.polytech.si5.al.tfc.tdd.utils.SERVICE;
 import org.apache.http.client.methods.HttpPost;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,15 +20,17 @@ public class ProfileTest {
 
     @Test
     public void test() throws UnsupportedEncodingException, ParseException, URISyntaxException {
-        URI uri = new URI(GlobalServicePath.PROFILE_SERVICE + ProfileServicePath.PROFILE);
+        URI uri = RequestUtils.getURI(SERVICE.PROFILE, ProfileServicePath.PROFILE);
+        System.out.println(uri);
         HttpPost httpPost = new HttpPost(uri);
-        String json = "{\"email\": \"florian.salord@etu.unice.fr\"}";
+        String json = "florian.salord@etu.unice.fr";
         RequestUtils.generateBody(httpPost, json);
         String profile = RequestUtils.executeRequest(httpPost, 200, false);
 
         JSONParser parser = new JSONParser();
 
-        assertEquals("florian.salord@etu.unice.fr", ((JSONObject) parser.parse(profile)).get("_id"));
+        assertEquals("florian.salord@etu.unice.fr", ((JSONObject) parser.parse(profile)).get("email"));
+
 /*
         uri = UriComponentsBuilder.fromUriString(GlobalServicePath.PROFILE_SERVICE + ProfileServicePath.PROFILE)
                 .build().toUri();
