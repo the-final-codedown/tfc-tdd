@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,29 +28,27 @@ public class AccountTest {
     private final long moneyExpected = 300;
     private long amountSlidingWindowExpected = 300;
 
-    @Ignore
+
     @Test
     public void CreateAccount() throws UnsupportedEncodingException, ParseException {
-        final int moneyExpected = 300;
-        final String accountTypeExpected = AccountType.CHECK.toString();
+        final long moneyExpected = 300;
+        final String accountTypeExpected = AccountType.SAVINGS.toString();
+        final String emailOwnerExpected = "florian.salord@etu.unice.fr";
 
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.CREATE_ACCOUNT+"/florian.salord@etu.unice.fr");
+        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT+"/"+emailOwnerExpected+"/accounts");
         System.out.println(uri);
         HttpPost httpPost = new HttpPost(uri);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("money", moneyExpected);
         jsonObject.addProperty("accountType", accountTypeExpected);
         RequestUtils.generateBody(httpPost, jsonObject.toString());
+
         String account = RequestUtils.executeRequest(httpPost, 200, false);
         System.out.println("account"+ account);
+        JSONObject accountObj = (JSONObject) new JSONParser().parse(account);
 
-        JSONParser parser = new JSONParser();
-
-        assertEquals(moneyExpected, ((JSONObject) parser.parse(account)).get("money"));
-        assertEquals(accountTypeExpected, ((JSONObject) parser.parse(account)).get("accountType"));
-
-        String owner = (String) ((JSONObject) parser.parse(account)).get("owner");
-        assertEquals(accountTypeExpected, ((JSONObject) parser.parse(owner)).get("email"));
+        assertEquals(moneyExpected, accountObj.get("money"));
+        assertEquals(accountTypeExpected, accountObj.get("accountType"));
     }
 
     @Test
@@ -63,7 +60,7 @@ public class AccountTest {
         System.out.println(uri);
         HttpGet httpGet = new HttpGet(uri);
         String accountString = RequestUtils.executeRequest(httpGet, 200, false);
-        System.out.println(accountString);
+
         JSONParser parser = new JSONParser();
         JSONObject accountObject = ((JSONObject) parser.parse(accountString));
 
@@ -90,12 +87,13 @@ public class AccountTest {
     @Test
     public void viewAccountsByType() throws ParseException{
         final String accountTypeExpected = AccountType.CHECK.toString();
-        final int countAccountExpected = 5;
 
         JSONArray arrayAccount = getAccountByType(accountTypeExpected);
 
-        assertEquals(countAccountExpected, arrayAccount.size());
-        assertEquals(accountTypeExpected,((JSONObject)arrayAccount.get(0)).get("accountType"));
+        for(Object acc : arrayAccount.toArray()){
+            assertEquals(accountTypeExpected,((JSONObject)acc).get("accountType"));
+        }
+
     }
 
     private JSONArray getAccountByType(String accountTypeExpected) throws ParseException {
@@ -103,7 +101,6 @@ public class AccountTest {
         System.out.println(uri);
         HttpGet httpGet = new HttpGet(uri);
         String account = RequestUtils.executeRequest(httpGet, 200, false);
-        System.out.println(account);
         JSONParser parser = new JSONParser();
         return (JSONArray) parser.parse(account);
     }
