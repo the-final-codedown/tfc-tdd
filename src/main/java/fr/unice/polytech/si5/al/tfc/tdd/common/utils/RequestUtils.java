@@ -1,6 +1,6 @@
-package fr.unice.polytech.si5.al.tfc.tdd.utils;
+package fr.unice.polytech.si5.al.tfc.tdd.common.utils;
 
-import fr.unice.polytech.si5.al.tfc.tdd.path.GlobalServicePath;
+import fr.unice.polytech.si5.al.tfc.tdd.common.path.GlobalServicePath;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;

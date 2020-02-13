@@ -1,23 +1,14 @@
 package fr.unice.polytech.si5.al.tfc.tdd;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import fr.unice.polytech.si5.al.tfc.tdd.model.AccountType;
-import fr.unice.polytech.si5.al.tfc.tdd.path.AccountServicePath;
-import fr.unice.polytech.si5.al.tfc.tdd.path.ProfileServicePath;
-import fr.unice.polytech.si5.al.tfc.tdd.utils.RequestUtils;
-import fr.unice.polytech.si5.al.tfc.tdd.utils.SERVICE;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.AccountClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.model.AccountType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,31 +26,20 @@ public class AccountTest {
         final String accountTypeExpected = AccountType.SAVINGS.toString();
         final String emailOwnerExpected = "florian.salord@etu.unice.fr";
 
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT+"/"+emailOwnerExpected+"/accounts");
-        System.out.println(uri);
-        HttpPost httpPost = new HttpPost(uri);
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("money", moneyExpected);
-        jsonObject.addProperty("accountType", accountTypeExpected);
-        RequestUtils.generateBody(httpPost, jsonObject.toString());
-
-        String account = RequestUtils.executeRequest(httpPost, 200, false);
-        System.out.println("account"+ account);
+        String account = AccountClient.createAccount(moneyExpected, accountTypeExpected, emailOwnerExpected);
         JSONObject accountObj = (JSONObject) new JSONParser().parse(account);
 
         assertEquals(moneyExpected, accountObj.get("money"));
         assertEquals(accountTypeExpected, accountObj.get("accountType"));
     }
 
+
     @Test
     public void ViewAccount() throws ParseException{
         final String accountTypeExpected = AccountType.CHECK.toString();
         final long lastWindowExpected = 0;
 
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT+"/"+accountId);
-        System.out.println(uri);
-        HttpGet httpGet = new HttpGet(uri);
-        String accountString = RequestUtils.executeRequest(httpGet, 200, false);
+        String accountString = AccountClient.viewAccount(accountId);
 
         JSONParser parser = new JSONParser();
         JSONObject accountObject = ((JSONObject) parser.parse(accountString));
@@ -72,36 +52,27 @@ public class AccountTest {
     @Test
     public void GetCap() throws ParseException {
 
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT+"/"+accountId+"/cap");
-        System.out.println(uri);
-        HttpGet httpGet = new HttpGet(uri);
-        String cap = RequestUtils.executeRequest(httpGet, 200, false);
+        String cap = AccountClient.getCap(accountId);
 
         JSONParser parser = new JSONParser();
 
         assertEquals(moneyExpected, ((JSONObject) parser.parse(cap)).get("money"));
         assertEquals(amountSlidingWindowExpected, ((JSONObject) parser.parse(cap)).get("amountSlidingWindow"));
-
     }
+
 
     @Test
     public void viewAccountsByType() throws ParseException{
         final String accountTypeExpected = AccountType.CHECK.toString();
 
-        JSONArray arrayAccount = getAccountByType(accountTypeExpected);
+        String account = AccountClient.getAccountByType(accountTypeExpected);
+        JSONParser parser = new JSONParser();
+        JSONArray arrayAccount = (JSONArray) parser.parse(account);
 
         for(Object acc : arrayAccount.toArray()){
             assertEquals(accountTypeExpected,((JSONObject)acc).get("accountType"));
         }
-
     }
 
-    private JSONArray getAccountByType(String accountTypeExpected) throws ParseException {
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT + "/" + accountTypeExpected + "/accounts");
-        System.out.println(uri);
-        HttpGet httpGet = new HttpGet(uri);
-        String account = RequestUtils.executeRequest(httpGet, 200, false);
-        JSONParser parser = new JSONParser();
-        return (JSONArray) parser.parse(account);
-    }
+
 }
