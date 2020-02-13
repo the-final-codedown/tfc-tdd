@@ -4,8 +4,8 @@ import fr.unice.polytech.si5.al.tfc.tdd.path.GlobalServicePath;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpHead;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -96,7 +96,7 @@ public class RequestUtils {
         return content;
     }
 
-    public static void generateBody(HttpPost request, String body) throws UnsupportedEncodingException {
+    public static void generateBody(HttpEntityEnclosingRequestBase request, String body) throws UnsupportedEncodingException {
         StringEntity entity = new StringEntity(body);
         request.setEntity(entity);
         request.setHeader("Accept", "application/json");
