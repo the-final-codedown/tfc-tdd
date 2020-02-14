@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 
+
 public class RequestUtils {
 
     private static Logger LOG = Logger.getLogger(RequestUtils.class.getName());

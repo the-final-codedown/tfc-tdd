@@ -21,7 +21,7 @@ public class AccountTest {
 
 
     @Test
-    public void CreateAccount() throws UnsupportedEncodingException, ParseException {
+    public void createAccount() throws UnsupportedEncodingException, ParseException {
         final long moneyExpected = 300;
         final String accountTypeExpected = AccountType.SAVINGS.toString();
         final String emailOwnerExpected = "florian.salord@etu.unice.fr";
@@ -34,12 +34,12 @@ public class AccountTest {
 
 
         String account = AccountClient.viewAccount((String) accountCreatedObj.get("accountId"));
-        assertEquals(accountCreated,account);
+        assertEquals(accountCreated, account);
     }
 
 
     @Test
-    public void ViewAccount() throws ParseException{
+    public void viewAccount() throws ParseException {
         final String accountTypeExpected = AccountType.CHECK.toString();
         final long lastWindowExpected = 0;
 
@@ -54,7 +54,7 @@ public class AccountTest {
     }
 
     @Test
-    public void GetCap() throws ParseException {
+    public void getCap() throws ParseException {
         String cap = AccountClient.getCap(accountId);
 
         JSONParser parser = new JSONParser();
@@ -65,15 +65,15 @@ public class AccountTest {
 
 
     @Test
-    public void viewAccountsByType() throws ParseException{
+    public void viewAccountsByType() throws ParseException {
         final String accountTypeExpected = AccountType.CHECK.toString();
 
         String account = AccountClient.getAccountByType(accountTypeExpected);
         JSONParser parser = new JSONParser();
         JSONArray arrayAccount = (JSONArray) parser.parse(account);
 
-        for(Object acc : arrayAccount.toArray()){
-            assertEquals(accountTypeExpected,((JSONObject)acc).get("accountType"));
+        for (Object acc : arrayAccount.toArray()) {
+            assertEquals(accountTypeExpected, ((JSONObject) acc).get("accountType"));
         }
     }
 

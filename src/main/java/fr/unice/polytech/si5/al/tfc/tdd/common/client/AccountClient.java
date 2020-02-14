@@ -14,7 +14,7 @@ import java.net.URI;
 public class AccountClient {
 
     public static String createAccount(long moneyExpected, String accountTypeExpected, String emailOwnerExpected) throws UnsupportedEncodingException {
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT+"/"+emailOwnerExpected+"/accounts");
+        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT + "/" + emailOwnerExpected + "/accounts");
         System.out.println(uri);
         HttpPost httpPost = new HttpPost(uri);
         JsonObject jsonObject = new JsonObject();
@@ -26,7 +26,7 @@ public class AccountClient {
     }
 
     public static String viewAccount(String accountId) {
-        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT+"/"+accountId);
+        URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT + "/" + accountId);
         System.out.println(uri);
         HttpGet httpGet = new HttpGet(uri);
         return RequestUtils.executeRequest(httpGet, 200, false);
@@ -38,11 +38,12 @@ public class AccountClient {
         HttpGet httpGet = new HttpGet(uri);
         return RequestUtils.executeRequest(httpGet, 200, false);
     }
+
     public static String getAccountByType(String accountTypeExpected) throws ParseException {
         URI uri = RequestUtils.getURI(SERVICE.ACCOUNT, AccountServicePath.ACCOUNT + "/" + accountTypeExpected + "/accounts");
         System.out.println(uri);
         HttpGet httpGet = new HttpGet(uri);
-        return  RequestUtils.executeRequest(httpGet, 200, false);
+        return RequestUtils.executeRequest(httpGet, 200, false);
     }
 
 }
