@@ -3,9 +3,7 @@ package fr.unice.polytech.si5.al.tfc.tdd.common.model;
 
 import lombok.*;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Data
 @AllArgsConstructor
@@ -42,12 +40,6 @@ public class Transaction {
     }
 
     public void setDate(String date) {
-        try {
-            this.date = LocalDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-        } catch (DateTimeException ignored) {
-        }
-        if (this.date == null) {
-            this.date = LocalDateTime.now();
-        }
+        this.date = LocalDateTime.parse(date);
     }
 }
