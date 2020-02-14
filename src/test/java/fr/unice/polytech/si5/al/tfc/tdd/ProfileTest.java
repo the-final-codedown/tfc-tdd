@@ -1,12 +1,10 @@
 package fr.unice.polytech.si5.al.tfc.tdd;
 
-import com.google.gson.JsonObject;
-import fr.unice.polytech.si5.al.tfc.tdd.path.ProfileServicePath;
-import fr.unice.polytech.si5.al.tfc.tdd.utils.RequestUtils;
-import fr.unice.polytech.si5.al.tfc.tdd.utils.SERVICE;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.ProfileClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.path.ProfileServicePath;
+import fr.unice.polytech.si5.al.tfc.tdd.common.utils.RequestUtils;
+import fr.unice.polytech.si5.al.tfc.tdd.common.utils.SERVICE;
+import org.apache.http.client.methods.HttpGet;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
