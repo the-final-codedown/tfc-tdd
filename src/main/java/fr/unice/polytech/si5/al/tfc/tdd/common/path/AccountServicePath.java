@@ -1,4 +1,4 @@
-package fr.unice.polytech.si5.al.tfc.tdd.path;
+package fr.unice.polytech.si5.al.tfc.tdd.common.path;
 
 public class AccountServicePath {
 

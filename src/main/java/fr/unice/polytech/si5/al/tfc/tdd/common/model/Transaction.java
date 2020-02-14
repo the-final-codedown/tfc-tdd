@@ -1,4 +1,4 @@
-package fr.unice.polytech.si5.al.tfc.tdd.common;
+package fr.unice.polytech.si5.al.tfc.tdd.common.model;
 
 
 import lombok.*;
