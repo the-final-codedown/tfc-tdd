@@ -1,6 +1,5 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli;
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.PolyDiplomaPublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Bye;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.AccountsByType;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.CreateAccount;
@@ -13,13 +12,13 @@ import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Shell;
  * An Interactive shell that interacts with a Cookie on Demand instance
  * Use -Dexec.args="IP_ADDRESS PORT_NUMBER" to change host/port parameters
  */
-public class AdminCLI extends Shell<PolyDiplomaPublicAPI> {
+public class TFCclient extends Shell<PolyDiplomaPublicAPI> {
 
     /**
      * describe whitch command is available
      *
      */
-    public AdminCLI() {
+    public TFCclient() {
 
         this.system = new PolyDiplomaPublicAPI();
         this.invite = "PolyDiploma";
@@ -36,7 +35,7 @@ public class AdminCLI extends Shell<PolyDiplomaPublicAPI> {
 
     public static void main(String[] args) {
         System.out.println("\n\nStarting PolyDiploma Admin API");
-        AdminCLI main = new AdminCLI();
+        TFCclient main = new TFCclient();
         main.run();
         System.out.println("Exiting PolyDiploma Admin API\n\n");
     }

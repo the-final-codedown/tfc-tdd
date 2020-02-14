@@ -1,6 +1,6 @@
 package fr.unice.polytech.si5.al.tfc.tdd;
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.ProfileClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.client.ProfileClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

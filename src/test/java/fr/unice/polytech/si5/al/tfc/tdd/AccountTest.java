@@ -1,6 +1,6 @@
 package fr.unice.polytech.si5.al.tfc.tdd;
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.AccountClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.client.AccountClient;
 import fr.unice.polytech.si5.al.tfc.tdd.common.model.AccountType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,11 +26,15 @@ public class AccountTest {
         final String accountTypeExpected = AccountType.SAVINGS.toString();
         final String emailOwnerExpected = "florian.salord@etu.unice.fr";
 
-        String account = AccountClient.createAccount(moneyExpected, accountTypeExpected, emailOwnerExpected);
-        JSONObject accountObj = (JSONObject) new JSONParser().parse(account);
+        String accountCreated = AccountClient.createAccount(moneyExpected, accountTypeExpected, emailOwnerExpected);
+        JSONObject accountCreatedObj = (JSONObject) new JSONParser().parse(accountCreated);
 
-        assertEquals(moneyExpected, accountObj.get("money"));
-        assertEquals(accountTypeExpected, accountObj.get("accountType"));
+        assertEquals(moneyExpected, accountCreatedObj.get("money"));
+        assertEquals(accountTypeExpected, accountCreatedObj.get("accountType"));
+
+
+        String account = AccountClient.viewAccount((String) accountCreatedObj.get("accountId"));
+        assertEquals(accountCreated,account);
     }
 
 
@@ -51,7 +55,6 @@ public class AccountTest {
 
     @Test
     public void GetCap() throws ParseException {
-
         String cap = AccountClient.getCap(accountId);
 
         JSONParser parser = new JSONParser();

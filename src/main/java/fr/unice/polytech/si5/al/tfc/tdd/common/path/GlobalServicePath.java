@@ -10,4 +10,8 @@ public class GlobalServicePath {
 
     public static String MICRO_ACCOUNT_PATH = "http://localhost:8081";
 
+    public static String MICRO_SAVINGS_PATH = "http://localhost:8082";
+
+    public static String HYBRID_SAVINGS_PATH = "http://localhost:8081";
+
 }

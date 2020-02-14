@@ -1,7 +1,7 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 
 public class Bye extends Command<PolyDiplomaPublicAPI> {

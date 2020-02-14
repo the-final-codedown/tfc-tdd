@@ -1,4 +1,4 @@
-package fr.unice.polytech.si5.al.tfc.tdd.common.cli.api;
+package fr.unice.polytech.si5.al.tfc.tdd.common.cli;
 
 
 public class PolyDiplomaPublicAPI {

@@ -1,9 +1,9 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.profile;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.api.ProfileClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.client.ProfileClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;

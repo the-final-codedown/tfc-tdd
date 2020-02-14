@@ -203,7 +203,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.AdminCLI</mainClass>
+                            <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.TFCclient</mainClass>
                         </configuration>
                     </execution>
                     <execution>
@@ -212,7 +212,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.AdminCLI</mainClass>
+                            <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.TFCclient</mainClass>
                         </configuration>
                     </execution>
                 </executions>
