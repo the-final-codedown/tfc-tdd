@@ -14,4 +14,10 @@ public class GlobalServicePath {
 
     public static String HYBRID_SAVINGS_PATH = "http://localhost:8081";
 
+
+    public static String MICRO_DUMP_PATH = "http://localhost:8085";
+
+    public static String HYBRID_DUMP_PATH = "http://localhost:8081";
+
+
 }
