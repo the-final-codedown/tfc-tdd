@@ -24,7 +24,7 @@ public class AccountTest {
     public void createAccount() throws UnsupportedEncodingException, ParseException {
         final long moneyExpected = 300;
         final String accountTypeExpected = AccountType.SAVINGS.toString();
-        final String emailOwnerExpected = "florian.salord@etu.unice.fr";
+        final String emailOwnerExpected = "florian@email";
 
         String accountCreated = AccountClient.createAccount(moneyExpected, accountTypeExpected, emailOwnerExpected);
         JSONObject accountCreatedObj = (JSONObject) new JSONParser().parse(accountCreated);
