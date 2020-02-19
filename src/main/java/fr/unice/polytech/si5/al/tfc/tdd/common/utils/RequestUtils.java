@@ -51,24 +51,20 @@ public class RequestUtils {
 
     public static String executeRequest(HttpUriRequest request, int expectedStatusCode, boolean print) {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
-            CloseableHttpResponse response = httpclient.execute(request);
-            assertEquals(expectedStatusCode, response.getStatusLine().getStatusCode());
-            HttpEntity entity = response.getEntity();
-            String content = entity == null ? "" : EntityUtils.toString(entity);
-            if (print) {
-                printRequest(request, response, content);
+            try (CloseableHttpResponse response = httpclient.execute(request)) {
+                assertEquals(expectedStatusCode, response.getStatusLine().getStatusCode());
+                HttpEntity entity = response.getEntity();
+                String content = entity == null ? "" : EntityUtils.toString(entity);
+                if (print) {
+                    printRequest(request, response, content);
+                }
+                return content;
             }
-            return content;
-
         } catch (IOException e) {
             e.printStackTrace();
             return e.getMessage();
-        }catch (Exception ex){
-            System.out.println(request.getURI());
-            System.out.println(request.getMethod());
-            ex.printStackTrace();
-            return ex.getMessage();
         }
+
     }
 
     public static Header[] executeRequest(HttpHead request, int expectedStatusCode) {
