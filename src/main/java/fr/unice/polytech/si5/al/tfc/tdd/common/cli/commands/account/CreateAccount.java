@@ -1,14 +1,14 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.AccountClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class CreateAccount extends Command<PolyDiplomaPublicAPI> {
+public class CreateAccount extends Command<PublicAPI> {
 	private String mail;
 	private int money;
 	private String idAccount;
@@ -22,7 +22,7 @@ public class CreateAccount extends Command<PolyDiplomaPublicAPI> {
 
 	@Override
 	public String identifier() {
-		return "create_profile";
+		return "create_account";
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class CreateAccount extends Command<PolyDiplomaPublicAPI> {
 
 	@Override
 	public String describe() {
-		return "Permit to create profile user {money, mail, idAccount}";
+		return "{ money, mail, idAccount }";
 	}
 
 	@Override

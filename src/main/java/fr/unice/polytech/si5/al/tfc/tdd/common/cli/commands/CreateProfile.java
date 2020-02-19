@@ -1,14 +1,14 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.ProfileClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class CreateProfile extends Command<PolyDiplomaPublicAPI> {
+public class CreateProfile extends Command<PublicAPI> {
 	private String mail;
 
 	@Override
@@ -28,7 +28,7 @@ public class CreateProfile extends Command<PolyDiplomaPublicAPI> {
 
 	@Override
 	public String describe() {
-		return "Permit to create profile user";
+		return "{ mail }";
 	}
 
 	@Override

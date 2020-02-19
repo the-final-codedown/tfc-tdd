@@ -1,15 +1,14 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
-import fr.unice.polytech.si5.al.tfc.tdd.common.client.ProfileClient;
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.TransferValidatorClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class Pay extends Command<PolyDiplomaPublicAPI> {
+public class Pay extends Command<PublicAPI> {
 	private String accountIdOrigin;
 	private String accountIdDestination;
 	private int value;
@@ -36,7 +35,7 @@ public class Pay extends Command<PolyDiplomaPublicAPI> {
 
 	@Override
 	public String describe() {
-		return "Permit to pay {accountIdOrigin accountIdDestination value";
+		return "{accountIdOrigin accountIdDestination value}";
 	}
 
 	@Override

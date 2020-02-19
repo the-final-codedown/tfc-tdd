@@ -1,10 +1,10 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 
-public class Bye extends Command<PolyDiplomaPublicAPI> {
+public class Bye extends Command<PublicAPI> {
 
 	@Override
 	public String identifier() {
@@ -16,7 +16,7 @@ public class Bye extends Command<PolyDiplomaPublicAPI> {
 
 	@Override
 	public String describe() {
-		return "Exit PolyDiploma";
+		return "Exit ";
 	}
 
 	@Override

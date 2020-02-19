@@ -57,6 +57,7 @@ public class Shell<T> {
                         shouldContinue = true;
                     else {
                         String identifier = keyword.toLowerCase();
+                        System.out.println("identifier "+keyword.toLowerCase());
                         shouldContinue = processCommand(identifier, args);
                     }
                 } catch (IllegalArgumentException iae) {
