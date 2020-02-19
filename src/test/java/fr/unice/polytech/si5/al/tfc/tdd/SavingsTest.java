@@ -60,7 +60,6 @@ public class SavingsTest {
     private static RequestUtils.FuncInterface function(long moneyExpected) {
         return (String content) -> {
             JSONObject newAccount = (JSONObject) new JSONParser().parse(content);
-            System.out.println("Money should be equal to " + moneyExpected + "but is equal to " + newAccount.get("money"));
             assertNotEquals(moneyExpected, newAccount.get("money"));
         };
     }

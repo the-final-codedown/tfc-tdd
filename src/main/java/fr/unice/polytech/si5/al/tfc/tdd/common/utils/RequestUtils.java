@@ -89,7 +89,7 @@ public class RequestUtils {
         String content = null;
         while (true) {
             try {
-                function.assertion(executeRequest(request, expectedStatusCode, true));
+                function.assertion(executeRequest(request, expectedStatusCode, false));
                 Thread.sleep(1000);
             } catch (AssertionError | Exception a) {
                 content = executeRequest(request, expectedStatusCode);
