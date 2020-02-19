@@ -190,6 +190,12 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>architecture</key>
+                                    <value>micro</value>
+                                </systemProperty>
+                            </systemProperties>
                             <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.TFCclient</mainClass>
                         </configuration>
                     </execution>
@@ -197,17 +203,19 @@
                         <id>hybrid</id>
                         <goals>
                             <goal>java</goal>
-
                         </goals>
                         <configuration>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>architecture</key>
+                                    <value>hybrid</value>
+                                </systemProperty>
+                            </systemProperties>
                             <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.TFCclient</mainClass>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
-
 </project>

@@ -39,8 +39,7 @@ public class TFCclient extends Shell<PolyDiplomaPublicAPI> {
     }
 
     public static void main(String[] args) {
-        System.out.println("\n\nStarting TFC - CLI");
-
+        System.out.println("\n\nStarting TFC - CLI for " + System.getProperty("architecture") + " architecture");
         TFCclient main = new TFCclient();
         main.run();
         System.out.println("Exiting TFC - CLI\n\n");
