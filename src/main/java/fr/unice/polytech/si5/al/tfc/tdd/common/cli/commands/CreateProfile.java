@@ -1,4 +1,4 @@
-package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.profile;
+package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;

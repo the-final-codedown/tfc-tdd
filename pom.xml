@@ -197,6 +197,7 @@
                         <id>hybrid</id>
                         <goals>
                             <goal>java</goal>
+
                         </goals>
                         <configuration>
                             <mainClass>fr.unice.polytech.si5.al.tfc.tdd.common.cli.TFCclient</mainClass>

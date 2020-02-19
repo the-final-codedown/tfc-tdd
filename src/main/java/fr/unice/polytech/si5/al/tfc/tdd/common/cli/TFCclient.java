@@ -1,11 +1,14 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli;
 
+import  fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Bye;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Dump;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Pay;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.AccountsByType;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.CreateAccount;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.GetCap;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.ViewAccounts;
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.profile.CreateProfile;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.CreateProfile;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Shell;
 
 /**
@@ -21,7 +24,7 @@ public class TFCclient extends Shell<PolyDiplomaPublicAPI> {
     public TFCclient() {
 
         this.system = new PolyDiplomaPublicAPI();
-        this.invite = "PolyDiploma";
+        this.invite = "TFC";
         // Registering the command available for the user
         register(
                 Bye.class,
@@ -29,15 +32,18 @@ public class TFCclient extends Shell<PolyDiplomaPublicAPI> {
                 CreateAccount.class,
                 AccountsByType.class,
                 GetCap.class,
-                ViewAccounts.class
+                ViewAccounts.class,
+                Pay.class,
+                Dump.class
         );
     }
 
     public static void main(String[] args) {
-        System.out.println("\n\nStarting PolyDiploma Admin API");
+        System.out.println("\n\nStarting TFC - CLI");
+
         TFCclient main = new TFCclient();
         main.run();
-        System.out.println("Exiting PolyDiploma Admin API\n\n");
+        System.out.println("Exiting TFC - CLI\n\n");
     }
 
 }
