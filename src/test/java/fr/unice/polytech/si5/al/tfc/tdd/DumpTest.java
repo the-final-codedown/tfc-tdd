@@ -14,7 +14,7 @@ public class DumpTest {
     @Test
     public void test() throws UnsupportedEncodingException, ParseException, URISyntaxException {
         String dumpResult = DumpClient.dump();
-        System.out.println(dumpResult);
+        // System.out.println(dumpResult);
         assertTrue(dumpResult.contains("theos@email"));
         assertTrue(dumpResult.contains("gregoire@email"));
         assertTrue(dumpResult.contains("mathieu@email"));
