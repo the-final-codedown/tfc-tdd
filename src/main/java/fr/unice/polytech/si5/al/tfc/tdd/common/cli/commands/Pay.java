@@ -4,6 +4,7 @@ package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.TransferValidatorClient;
+import tfc.transfer.validator.TfcTransferValidator;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -29,13 +30,20 @@ public class Pay extends Command<PublicAPI> {
 	public void execute() throws UnsupportedEncodingException {
 
 		TransferValidatorClient transferValidatorClient = new TransferValidatorClient("localhost",50052);
-		transferValidatorClient.pay(accountIdOrigin,accountIdDestination,value);
+		TfcTransferValidator.TransferValidation result = transferValidatorClient.pay(accountIdOrigin, accountIdDestination, value);
+		if(result.getValidated()){
+			System.out.println("\u001b[32m"+"Payment Success");
+		}
+		else{
+			System.out.println("\u001b[31m"+"Payment Failure");
+		}
+		System.out.println("\u001b[0m\n");
 		System.out.println();
 	}
 
 	@Override
 	public String describe() {
-		return "{source, destination, value}";
+		return "{accountIdOrigin accountIdDestination value}";
 	}
 
 	@Override
