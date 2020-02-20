@@ -35,7 +35,7 @@ public class Pay extends Command<PublicAPI> {
 
 	@Override
 	public String describe() {
-		return "{accountIdOrigin, accountIdDestination, value}";
+		return "{source, destination, value}";
 	}
 
 	@Override
