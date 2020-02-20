@@ -11,13 +11,13 @@ import java.util.List;
 public class CreateAccount extends Command<PublicAPI> {
 	private String mail;
 	private int money;
-	private String idAccount;
+	private String AccountType;
 
 	@Override
 	public void load(List<String> args){
 		this.money = Integer.parseInt(args.get(0));
-		this.mail = args.get(1);
-		this.idAccount = args.get(2);
+		this.AccountType = args.get(1);
+		this.mail = args.get(2);
 	}
 
 	@Override
@@ -27,12 +27,12 @@ public class CreateAccount extends Command<PublicAPI> {
 
 	@Override
 	public void execute() throws UnsupportedEncodingException {
-		System.out.println(AccountClient.createAccount(this.money, this.mail, this.idAccount));
+		System.out.println(AccountClient.createAccount(this.money, this.AccountType, this.mail));
 	}
 
 	@Override
 	public String describe() {
-		return "{ money, mail, idAccount }";
+		return "{ money, accountType, mail}";
 	}
 
 	@Override
