@@ -1,34 +1,34 @@
-package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account;
+package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
-import fr.unice.polytech.si5.al.tfc.tdd.common.client.AccountClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.client.ProfileClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class ViewAccounts extends Command<PublicAPI> {
-	private String idAccount;
+public class CreateProfile extends Command<PublicAPI> {
+	private String mail;
 
 	@Override
 	public void load(List<String> args){
-		this.idAccount = args.get(0);
+		this.mail = args.get(0);
 	}
 
 	@Override
 	public String identifier() {
-		return "view_account";
+		return "create_profile";
 	}
 
 	@Override
 	public void execute() throws UnsupportedEncodingException {
-		System.out.println(AccountClient.viewAccount( this.idAccount));
+		System.out.println(ProfileClient.createProfile(this.mail));
 	}
 
 	@Override
 	public String describe() {
-		return " { idAccount }";
+		return "{ mail }";
 	}
 
 	@Override

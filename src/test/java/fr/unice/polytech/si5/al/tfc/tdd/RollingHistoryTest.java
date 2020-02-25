@@ -67,7 +67,7 @@ public class RollingHistoryTest {
         email.addProperty("email", String.valueOf(((JSONObject) ((JSONObject) parser.parse(accountToRestore)).get("owner")).get("email")));
         jsonObject.add("owner", email);
         jsonObject.addProperty("accountType", String.valueOf(((JSONObject) parser.parse(accountToRestore)).get("accountType")));
-        System.out.println(jsonObject.toString());
+
         RequestUtils.generateBody(httpPut, jsonObject.toString());
         accountToRestore = RequestUtils.executeRequest(httpPut, 200, false);
         HttpGet httpGet = new HttpGet(uriTransaction);
@@ -75,7 +75,7 @@ public class RollingHistoryTest {
         });
         for (Transaction transaction : transactions) {
             String updatedTransaction = putUpdateTransactionDate(transaction);
-            System.out.println(updatedTransaction);
+            // TODO : wut?
         }
 
         client.shutdown();
@@ -92,7 +92,7 @@ public class RollingHistoryTest {
                     i++;
                 }
             }
-            System.out.println("i should be equal to " + expectedNumberOfTransaction + "but is equal to " + (i - sizeOfTransactionsBefore));
+            System.out.println("Should be equal to " + expectedNumberOfTransaction + " but is equal to " + (i - sizeOfTransactionsBefore));
             assertNotEquals(expectedNumberOfTransaction, i - sizeOfTransactionsBefore);
         };
     }
@@ -113,50 +113,43 @@ public class RollingHistoryTest {
     @Test
     public void rollingHistory() throws IOException, InterruptedException, URISyntaxException {
         HttpGet httpGet = new HttpGet(uriTransaction);
-        System.out.println(uriTransaction);
+
         ObjectMapper objectMapper = new ObjectMapper();
         TfcTransferValidator.TransferValidation validation = client.pay(clientId, "bank", 110);
-        System.out.println("" + validation);
+
         assertTrue(validation.getValidated());
         validation = client.pay(clientId, "bank", 110);
-        System.out.println("" + validation);
+
         assertTrue(validation.getValidated());
         validation = client.pay(clientId, "bank", 110);
-        System.out.println("" + validation);
+
         assertFalse(validation.getValidated());
 
         List<Transaction> transactionsAfter = objectMapper.readValue(RequestUtils.loopExecuteRequest(httpGet, function(2), 200, 1000), new TypeReference<List<Transaction>>() {
         });
-        System.out.println("transactionsAfter");
-        System.out.println(transactionsAfter);
+
         List<Transaction> transactionsOfToday = getTransactionsOfToday(transactionsAfter);
-        System.out.println("transactionsOfToday");
-        System.out.println(transactionsOfToday);
+
         String transactionUpdated = putUpdateTransactionDate(transactionsOfToday.get(0));
-        System.out.println(transactionUpdated);
+
         HttpGet httpGet1 = new HttpGet(new URI(uriAccount + "/" + clientId));
 
         RequestUtils.FuncInterface functionVerifyLastWindow = (String content) -> {
-            System.out.println(content);
             JSONParser jsonParser = new JSONParser();
             JSONObject transactionJson = (JSONObject) jsonParser.parse(content);
             int lastWindow = Integer.parseInt(transactionJson.get("lastWindow").toString());
-            System.out.println("lastWindow is equal to " + lastWindow);
             assertNotEquals(110, lastWindow);
         };
         RequestUtils.loopExecuteRequest(httpGet1, functionVerifyLastWindow, 200, 1000);
 
         validation = client.pay(clientId, "bank", 110);
-        System.out.println("" + validation);
         assertTrue(validation.getValidated());
 
         validation = client.pay(clientId, "bank", 110);
-        System.out.println("" + validation);
         assertFalse(validation.getValidated());
     }
 
     private List<Transaction> getTransactionsOfToday(List<Transaction> transactions) {
-        System.out.println("year of today " + LocalDateTime.now().getYear());
         return transactions.stream().filter(transaction -> (transaction.getDate().getYear() == LocalDateTime.now().getYear() && transaction.getSource().equals(clientId))).collect(Collectors.toList());
     }
 }

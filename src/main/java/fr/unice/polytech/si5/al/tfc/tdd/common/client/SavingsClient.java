@@ -16,8 +16,6 @@ public class SavingsClient {
         URI uri = RequestUtils.getURI(SERVICE.SAVINGS, SavingsServicePath.SAVINGS);
         System.out.println(uri);
         HttpPost httpPost = new HttpPost(uri);
-        JsonObject jsonObject = new JsonObject();
-        RequestUtils.generateBody(httpPost, jsonObject.toString());
 
         return RequestUtils.executeRequest(httpPost, 200, false);
     }

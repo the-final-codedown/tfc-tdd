@@ -1,14 +1,14 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.AccountClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class GetCap extends Command<PolyDiplomaPublicAPI> {
+public class GetCap extends Command<PublicAPI> {
 	private String idAccount;
 
 	@Override
@@ -28,7 +28,7 @@ public class GetCap extends Command<PolyDiplomaPublicAPI> {
 
 	@Override
 	public String describe() {
-		return "Permit to get cap of an account {idAccount}";
+		return "{idAccount}";
 	}
 
 	@Override

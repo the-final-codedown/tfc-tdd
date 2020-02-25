@@ -64,6 +64,7 @@ public class RequestUtils {
             e.printStackTrace();
             return e.getMessage();
         }
+
     }
 
     public static Header[] executeRequest(HttpHead request, int expectedStatusCode) {
@@ -84,7 +85,7 @@ public class RequestUtils {
         String content = null;
         while (true) {
             try {
-                function.assertion(executeRequest(request, expectedStatusCode, true));
+                function.assertion(executeRequest(request, expectedStatusCode, false));
                 Thread.sleep(1000);
             } catch (AssertionError | Exception a) {
                 content = executeRequest(request, expectedStatusCode);

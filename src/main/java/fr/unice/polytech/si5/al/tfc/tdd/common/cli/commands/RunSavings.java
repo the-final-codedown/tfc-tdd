@@ -1,34 +1,33 @@
-package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.profile;
+package fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands;
 
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PolyDiplomaPublicAPI;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.PublicAPI;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Command;
 import fr.unice.polytech.si5.al.tfc.tdd.common.client.ProfileClient;
+import fr.unice.polytech.si5.al.tfc.tdd.common.client.SavingsClient;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class CreateProfile extends Command<PolyDiplomaPublicAPI> {
-	private String mail;
+public class RunSavings extends Command<PublicAPI> {
 
 	@Override
 	public void load(List<String> args){
-		this.mail = args.get(0);
 	}
 
 	@Override
 	public String identifier() {
-		return "create_profile";
+		return "run_savings";
 	}
 
 	@Override
 	public void execute() throws UnsupportedEncodingException {
-		System.out.println(ProfileClient.createProfile(this.mail));
+		System.out.println(SavingsClient.computingSavings());
 	}
 
 	@Override
 	public String describe() {
-		return "Permit to create profile user";
+		return "";
 	}
 
 	@Override

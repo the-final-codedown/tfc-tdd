@@ -31,25 +31,19 @@ public class SavingsTest {
     private static ObjectMapper objectMapper = new ObjectMapper();
     private final double interest = 1.1;
     private long moneyExpected;
+    private String accoundIdExpected;
 
     @Before
-    public void init() throws UnsupportedEncodingException {
-        AccountClient.createAccount(300,AccountType.SAVINGS.toString(),"florian@email");
-    }
-
-    @Test
-    public void computingSavings() throws IOException, ParseException, InterruptedException {
-
-        final String accoundIdExpected;
-
-        String savingAccounts = AccountClient.getAccountByType(AccountType.SAVINGS.toString());
-        System.out.println(savingAccounts);
-        JSONArray savingAccountsArr = (JSONArray) new JSONParser().parse(savingAccounts);
-        JSONObject account = ((JSONObject) savingAccountsArr.get(0));
-
+    public void init() throws UnsupportedEncodingException, ParseException {
+        String acccountExpected = AccountClient.createAccount(300,AccountType.SAVINGS.toString(),"florian@email");
+        JSONObject account = ((JSONObject) new JSONParser().parse(acccountExpected));
         moneyExpected = (long) account.get("money");
         moneyExpected *= interest;
         accoundIdExpected = (String)account.get("accountId");
+    }
+
+    @Test
+    public void computingSavings() throws IOException, ParseException {
 
         SavingsClient.computingSavings();
 
@@ -66,7 +60,6 @@ public class SavingsTest {
     private static RequestUtils.FuncInterface function(long moneyExpected) {
         return (String content) -> {
             JSONObject newAccount = (JSONObject) new JSONParser().parse(content);
-            System.out.println("Money should be equal to " + moneyExpected + "but is equal to " + newAccount.get("money"));
             assertNotEquals(moneyExpected, newAccount.get("money"));
         };
     }
