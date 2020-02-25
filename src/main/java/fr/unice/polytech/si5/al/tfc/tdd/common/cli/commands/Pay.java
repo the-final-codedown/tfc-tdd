@@ -27,7 +27,7 @@ public class Pay extends Command<PublicAPI> {
 	}
 
 	@Override
-	public void execute() throws UnsupportedEncodingException {
+	public void execute() throws UnsupportedEncodingException, InterruptedException {
 
 		TransferValidatorClient transferValidatorClient = new TransferValidatorClient("localhost",50052);
 		TfcTransferValidator.TransferValidation result = transferValidatorClient.pay(accountIdOrigin, accountIdDestination, value);
@@ -38,7 +38,8 @@ public class Pay extends Command<PublicAPI> {
 			System.out.println("\u001b[31m"+"Payment Failure");
 		}
 		System.out.println("\u001b[0m\n");
-		System.out.println();
+		//System.out.println();
+		transferValidatorClient.shutdown();
 	}
 
 	@Override

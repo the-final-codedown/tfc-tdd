@@ -1,13 +1,10 @@
 package fr.unice.polytech.si5.al.tfc.tdd.common.cli;
 
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Bye;
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Dump;
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.Pay;
+import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.*;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.AccountsByType;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.CreateAccount;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.GetCap;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.account.ViewAccounts;
-import fr.unice.polytech.si5.al.tfc.tdd.common.cli.commands.CreateProfile;
 import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Shell;
 
 /**
@@ -17,8 +14,7 @@ import fr.unice.polytech.si5.al.tfc.tdd.common.cli.framework.Shell;
 public class TFCclient extends Shell<PublicAPI> {
 
     /**
-     * describe whitch command is available
-     *
+     * describe which command is available
      */
     public TFCclient() {
 
@@ -33,7 +29,8 @@ public class TFCclient extends Shell<PublicAPI> {
                 GetCap.class,
                 ViewAccounts.class,
                 Pay.class,
-                Dump.class
+                Dump.class,
+                RunSavings.class
         );
     }
 
